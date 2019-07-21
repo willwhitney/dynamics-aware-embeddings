@@ -1,5 +1,7 @@
 # Dynamics-aware embeddings
-This repository contains the code for "Dynamics-aware Embeddings" by William Whitney, Rajat Agarwal, Kyunghyun Cho, and  Abhinav Gupta.
+This repository contains the code for "Dynamics-aware Embeddings" by William Whitney, Rajat Agarwal, Kyunghyun Cho, and  Abhinav Gupta. DynE is an objective for training embeddings for states and/or actions that allow sample efficient, stable learning in RL. Training TD3 from pixels using DynE is fast and allows similar asymptotic performance to TD3 from low-dimensional state observations. 
+
+![DynE pixels results](pixels_results.png)
 
 ## Usage
 
