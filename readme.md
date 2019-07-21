@@ -1,7 +1,13 @@
 # Dynamics-aware embeddings
-This repository contains the code for "Dynamics-aware Embeddings" by William Whitney, Rajat Agarwal, Kyunghyun Cho, and  Abhinav Gupta. DynE is an objective for training embeddings for states and/or actions that allow sample efficient, stable learning in RL. Training TD3 from pixels using DynE is fast and allows similar asymptotic performance to TD3 from low-dimensional state observations. 
+This repository contains the code for "Dynamics-aware Embeddings" by William Whitney, Rajat Agarwal, Kyunghyun Cho, and  Abhinav Gupta. 
+
+## Abstract
+
+In this paper we consider self-supervised representation learning to improve sample efficiency in reinforcement learning (RL). We propose a forward prediction objective for simultaneously learning embeddings of states and actions. These embeddings capture the structure of the environment’s dynamics, enabling efficient policy learning. We demonstrate that our action embeddings alone improve the sample efficiency and peak performance of model-free RL on control from low-dimensional observations. By combining state and action embeddings, we achieve efficient learning of high-quality policies on goal-conditioned 2D continuous control from pixel observations in only 1-2 million environment steps. 
 
 ![DynE pixels results](pixels_results.png)
+
+DynE works by building an embedding space where actions or states that are close togther have similar outcomes. This smoothness allows the policy and Q function to interpolate between nearby observations or actions, leading to faster convergence.
 
 ## Usage
 
