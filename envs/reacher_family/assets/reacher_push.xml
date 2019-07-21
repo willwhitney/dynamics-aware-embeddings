@@ -1,0 +1,51 @@
+<mujoco model="reacher_push">
+	<include file="./materials.xml"/>
+	<include file="./visual.xml"/>
+
+
+	<compiler angle="radian" inertiafromgeom="true"/>
+	<default>
+		<joint armature="1" damping="1" />
+	</default>
+	<option gravity="0 0 -9.81" integrator="RK4" timestep="0.01" />
+	<worldbody>
+		<!-- Arena -->
+		<light name="light" directional="true" diffuse=".4 .4 .4" pos="0 -0.2 1" mode="targetbody" target="body0" specular=".3 .3 .3" castshadow="false"/>
+		<camera name="track" mode="targetbody" pos="0 -1 0.45" target="body0" fovy="58" ipd="0.068"/>
+
+		<geom name="floor" type="plane" pos="0 0 0" size=".4 .2 10" material="grid"/>
+		<geom name="wall1" type="plane" pos="-.682843 0 .282843" size=".4 .2 10" zaxis="1 0 1" material="grid"/>
+		<geom name="wall2" type="plane" pos=".682843 0 .282843" size=".4 .2 10" zaxis="-1 0 1" material="grid"/>
+		<geom name="background" type="plane" pos="0 .2 .5" size="1 .5 10" zaxis="0 -1 0" material="grid"/>
+
+		<!-- Arm -->
+		<body name="body0" pos="0 0 0.25">
+			<geom fromto="0 0 0 0.2 0 0" name="link0" size=".02" type="capsule" material="self"/>
+			<joint axis="0 -1 0" limited="false" name="joint0" pos="0 0 0" type="hinge"/>
+			<body name="body1" pos="0.2 0 0">
+				<joint axis="0 -1 0" limited="true" name="joint1" pos="0 0 0" range="-3.0 3.0" type="hinge"/>
+				<geom fromto="0 0 0 0.2 0 0" name="link1" size=".02" type="capsule" material="self"/>
+				<body name="fingertip" pos="0.21 0 0">
+					<geom name="fingertip" pos="0 0 0" size=".02" type="sphere" material="effector"/>
+				</body>
+			</body>
+		</body>
+
+		<body name="box0" pos="0 0 0" >
+			<joint name="box0_x" type="slide" axis="1 0 0" limited="false" damping="0" stiffness="0" />
+			<joint name="box0_z" type="slide" axis="0 0 1" limited="false" damping="0" stiffness="0" />
+			<joint name="box0_y" type="hinge" limited="false" damping="0" stiffness="0" axis="0 1 0"/>
+			<geom  name="box0" type="box" size=".04 .04 .04" material="self" />
+	    </body>
+
+		<!-- Target -->
+		<body name="target" pos="0 0 0.3">
+			<geom mass="0" conaffinity="0" contype="0" name="target" pos="0 0 0" size=".04" type="sphere" material="target"/>
+		</body>
+
+	</worldbody>
+	<actuator>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="200.0" joint="joint0"/>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="200.0" joint="joint1"/>
+	</actuator>
+</mujoco>
