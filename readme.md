@@ -46,3 +46,8 @@ You can use DynE embeddings for states, actions, or both. Run `python main_dyne.
 You can compare with regular TD3 by using `main_td3.py`, with TD3 from pixels using `main_pixel_td3.py`, or with TD3 from pixels but using a pretrained VAE encoder using `main_vae_td3.py`.
 
 To see the results, run `jupyter notebook` from the root directory (`dynamics-aware-embeddings`) and open `rl_plots.ipynb`. This notebook contains functions for loading and preprocessing data as well as generating interactive plots.
+
+
+## Issues and contributions
+
+If you have any issues running this code, please create an issue or (better yet!) a pull request. I really appreciate any bug fixes or improvements you may have!
