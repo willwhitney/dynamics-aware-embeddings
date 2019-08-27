@@ -1,6 +1,8 @@
 # Dynamics-aware embeddings
 This repository contains the code for "Dynamics-aware Embeddings" by William Whitney, Rajat Agarwal, Kyunghyun Cho, and  Abhinav Gupta. 
 
+[arXiv link](https://arxiv.org/abs/1908.09357)
+
 ## Abstract
 
 In this paper we consider self-supervised representation learning to improve sample efficiency in reinforcement learning (RL). We propose a forward prediction objective for simultaneously learning embeddings of states and actions. These embeddings capture the structure of the environment’s dynamics, enabling efficient policy learning. We demonstrate that our action embeddings alone improve the sample efficiency and peak performance of model-free RL on control from low-dimensional observations. By combining state and action embeddings, we achieve efficient learning of high-quality policies on goal-conditioned 2D continuous control from pixel observations in only 1-2 million environment steps. 
