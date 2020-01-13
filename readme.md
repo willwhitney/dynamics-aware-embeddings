@@ -3,6 +3,8 @@ This repository contains the code for "Dynamics-aware Embeddings" by William Whi
 
 [arXiv link](https://arxiv.org/abs/1908.09357)
 
+[arXiv link](https://arxiv.org/abs/1908.09357)
+
 ## Abstract
 
 In this paper we consider self-supervised representation learning to improve sample efficiency in reinforcement learning (RL). We propose a forward prediction objective for simultaneously learning embeddings of states and action sequences. These embeddings capture the structure of the environment's dynamics, enabling efficient policy learning. We demonstrate that our action embeddings alone improve the sample efficiency and peak performance of model-free RL on control from low-dimensional states. By combining state and action embeddings, we achieve efficient learning of high-quality policies on goal-conditioned continuous control from pixel observations in only 1-2 million environment steps. 
@@ -48,3 +50,8 @@ You can use DynE embeddings for states, actions, or both. Run `python main_dyne.
 You can compare with regular TD3 by using `main_td3.py`, with TD3 from pixels using `main_pixel_td3.py`, or with TD3 from pixels but using a pretrained VAE encoder using `main_vae_td3.py`.
 
 To see the results, run `jupyter notebook` from the root directory (`dynamics-aware-embeddings`) and open `rl_plots.ipynb`. This notebook contains functions for loading and preprocessing data as well as generating interactive plots.
+
+
+## Issues and contributions
+
+If you have any issues running this code, please create an issue or (better yet!) a pull request. I really appreciate any bug fixes or improvements you may have!
