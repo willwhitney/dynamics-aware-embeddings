@@ -1,11 +1,13 @@
 # Dynamics-aware embeddings
-This repository contains the code for "Dynamics-aware Embeddings" by William Whitney, Rajat Agarwal, Kyunghyun Cho, and  Abhinav Gupta. 
+This repository contains the code for "Dynamics-aware Embeddings" by William Whitney, Rajat Agarwal, Kyunghyun Cho, and  Abhinav Gupta, which is published at [ICLR 2020](https://www.iclr.cc).
+
+[arXiv link](https://arxiv.org/abs/1908.09357)
 
 ## Abstract
 
-In this paper we consider self-supervised representation learning to improve sample efficiency in reinforcement learning (RL). We propose a forward prediction objective for simultaneously learning embeddings of states and actions. These embeddings capture the structure of the environment’s dynamics, enabling efficient policy learning. We demonstrate that our action embeddings alone improve the sample efficiency and peak performance of model-free RL on control from low-dimensional observations. By combining state and action embeddings, we achieve efficient learning of high-quality policies on goal-conditioned 2D continuous control from pixel observations in only 1-2 million environment steps. 
+In this paper we consider self-supervised representation learning to improve sample efficiency in reinforcement learning (RL). We propose a forward prediction objective for simultaneously learning embeddings of states and action sequences. These embeddings capture the structure of the environment's dynamics, enabling efficient policy learning. We demonstrate that our action embeddings alone improve the sample efficiency and peak performance of model-free RL on control from low-dimensional states. By combining state and action embeddings, we achieve efficient learning of high-quality policies on goal-conditioned continuous control from pixel observations in only 1-2 million environment steps. 
 
-![DynE pixels results](pixels_results.png)
+![DynE pixels results](pixels_results_sdet.png)
 
 DynE works by building an embedding space where actions or states that are close togther have similar outcomes. This smoothness allows the policy and Q function to interpolate between nearby observations or actions, leading to faster convergence.
 
@@ -21,7 +23,7 @@ For visualization I use Jupyter notebooks with [Altair](https://altair-viz.githu
 
 
 ### Code style
-In the interests of making this code easier to understand and hack on I have sometimes opted to duplicate code in several places instead of factoring it out. I find that research code is typically easier to get a handle on when it contains as little indirection as possible. 
+In the interest of making this code easier to understand and hack on I have sometimes opted to duplicate code in several places instead of factoring it out. I find that research code is typically easier to get a handle on when it contains as little indirection as possible. 
 
 
 ### Training embeddings
