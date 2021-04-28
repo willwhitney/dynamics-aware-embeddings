@@ -23,8 +23,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--name', default='default')
 parser.add_argument('--batch-size', type=int, default=128, metavar='N',
                     help='input batch size for training (default: 128)')
-parser.add_argument('--epochs', type=int, default=50, metavar='N',
-                    help='number of epochs to train (default: 10)')
+parser.add_argument('--epochs', type=int, default=200, metavar='N',
+                    help='number of epochs to train (default: 200)')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='enables CUDA training')
 parser.add_argument('--seed', type=int, default=1, metavar='S',
@@ -219,8 +219,7 @@ def build_decoder():
 
         for batch_idx in range(dec_epoch_size):
             z = sample_z_batch()
-            if args.z_from == 'marginal' or args.z_from == 'marginal-scale':
-                z = (z - z_stats[0].detach()) / z_stats[1].detach()
+            z = (z - z_stats[0].detach()) / z_stats[1].detach()
             decoded_action = decoder(z)
             z_hat = model.encode_actions(decoded_action)[0]
             z_hat_white = (z_hat - z_stats[0].detach()) / z_stats[1].detach()

@@ -20,7 +20,7 @@ import TD3
 from EmbeddedTD3 import EmbeddedTD3
 from RandomEmbeddedPolicy import RandomEmbeddedPolicy
 from RandomPolicy import RandomPolicy
-from embed_pixel_wrapper import EmbedPixelObservationWrapper
+from embed_stack_pixel_wrapper import EmbedStackPixelObservationWrapper
 
 # so it can find the DynE encoder and decoder
 sys.path.insert(0, '../embedding')
@@ -137,14 +137,15 @@ if __name__ == "__main__":
 
     if args.pixels:
         # `model` contains the state encoder
-        model_path = "../action-embedding/results/{}/{}/model_200.pt".format(args.source_env, args.decoder)
+        model_path = "../embedding/results/{}/{}/model_200.pt".format(args.source_env, args.decoder)
         print("Loading model from {}".format(model_path))
         model = torch.load(model_path).cuda().eval()
         state_dim = model.state_embed_size
 
         # renders to pixels, then encodes the pixels using `model`
-        env = EmbedPixelObservationWrapper(env, model,
-                stack=args.stack, img_width=args.img_width, source_img_width=args.source_img_width)
+        env = EmbedStackPixelObservationWrapper(env, model,
+                stack=args.stack, img_width=args.img_width,
+                source_img_width=args.source_img_width)
         print(model)
 
 
@@ -157,7 +158,7 @@ if __name__ == "__main__":
     # using embedded actions
     elif args.policy_name == "DynE-TD3":
         # `decoder` decodes DynE actions into sequences of raw actions
-        decoder_path = "../action-embedding/results/{}/{}/decoder.pt".format(source_env, args.decoder)
+        decoder_path = "../embedding/results/{}/{}/decoder.pt".format(source_env, args.decoder)
         print("Loading decoder from {}".format(decoder_path))
         decoder = torch.load(decoder_path)
         decoder.max_embedding = float(decoder.max_embedding)
