@@ -2,6 +2,10 @@ import numpy as np
 from gym.core import Wrapper
 import skimage.transform
 
+import torch
+from gym import spaces
+
+
 class EmbedStackPixelObservationWrapper(Wrapper):
     def __init__(self, env, encoder, stack=4, img_width=64, source_img_width=64):
         self.env = env
@@ -29,7 +33,7 @@ class EmbedStackPixelObservationWrapper(Wrapper):
         with torch.no_grad():
             stacked_imgs = np.concatenate(self.imgs, axis=0)
             img_input = torch.tensor(stacked_imgs).float().unsqueeze(0).cuda()
-            embedded_imgs = self.encoder.encode_state(obs)[0][0].cpu().numpy()
+            embedded_imgs = self.encoder.encode_state(img_input)[0][0].cpu().numpy()
         return embedded_imgs
 
     def step(self, action):
