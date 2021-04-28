@@ -134,8 +134,8 @@ if __name__ == "__main__":
     if args.source_env is not None: source_env = args.source_env
     else: source_env = args.env_name
 
-
     if args.pixels:
+        source_env = 'Pixel' + args.env_name
         # `model` contains the state encoder
         model_path = "../embedding/results/{}/{}/model_200.pt".format(args.source_env, args.decoder)
         print("Loading model from {}".format(model_path))
